@@ -1,0 +1,52 @@
+<h1>Products</h1>
+
+<div class="panel panel-primary">
+		<div class="panel-heading"
+		     style="font-size:large">Product
+				List
+		</div>
+
+		<div class="panel-body">
+				<div ng-controller="ProductsController" data-ng-init="find()">
+						<table class="table" >
+								<thead>
+								<tr>
+										<td>
+												<button type="button"
+												        class="btn btn-primary"
+												        ng-click="toggleImages()">
+														{{showImages ? "Hide" : "Show"}} Images
+												</button>
+										</td>
+										<td>Product</td>
+										<td>Code</td>
+										<td>Available</td>
+										<td>Price</td>
+								</tr>
+								</thead>
+								<tbody>
+								<tr ng-repeat="product in products">
+										<td>
+												<img ng-if="showImages"
+												     ng-src="{{product.imageUrl}}"
+												     title="{{product.productName}}"
+												     style="width:50px;margin:2px">
+										</td>
+										<td><a ui-sref="products.detail({productId: product._productId})">{{ product.productName}}</a></td>
+										<td>{{ product.productCode }}</td>
+										<td>{{ product.releaseDate | date : 'd MMM. yyyy'}}</td>
+										<td>{{ product.price | currency }}</td>
+										<td>
+												<a class="btn btn-primary"
+												   ui-sref="products.edit.info({productId: product._productId})">
+														Edit
+												</a>
+										</td>
+								</tr>
+								</tbody>
+						</table>
+
+				</div>
+		</div>
+</div>
+

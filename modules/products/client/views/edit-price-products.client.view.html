@@ -1,0 +1,53 @@
+<form class="form-horizontal" name="productForm">
+		<fieldset>
+				<legend>Basic Product Information</legend>
+				<div class="form-group">
+						<label class="col-md-2 control-label"
+						       for="inputProductPrice">Product Price</label>
+						<div class="col-md-4">
+								<input class="form-control"
+								       id="inputProductPrice"
+								       type="number"
+								       step="any"
+								       min="0"
+								       placeholder="Product Price"
+								       ng-model="product.price" />
+						</div>
+				</div>
+				<div class="form-group">
+						<label class="col-md-2 control-label"
+						       for="inputProductCost">Product Cost</label>
+						<div class="col-md-4">
+								<input class="form-control"
+								       id="inputProductCost"
+								       type="number"
+								       step="any"
+								       min="0"
+								       placeholder="Product Cost"
+								       ng-model="product.cost" />
+						</div>
+				</div>
+
+
+				<div class="form-group">
+						<div class="col-md-4 col-md-offset-2">
+                    <span>
+                        <button class="btn btn-primary"
+                                style="width:80px;margin-right:10px"
+                                ng-click="save(productForm.$valid)">
+		                        Save
+                        </button>
+                    </span>
+                    <span>
+                        <button class="btn btn-default"
+                                style="width:70px"
+                                ng-click="cancel()">
+		                        Cancel
+                        </button>
+                    </span>
+						</div>
+				</div>
+
+		</fieldset>
+</form>
+
