@@ -55,7 +55,6 @@ angular.module('products').controller('ProductsController', ['$scope', 'Products
 
   };
 
-
   $scope.addTags = function (tags) {
 
     if (tags) {
@@ -87,6 +86,11 @@ angular.module('products').controller('ProductsController', ['$scope', 'Products
     var product = $scope.edit.product;
     console.log(product);
     console.log('is', isValid);
+
+    // make product code uppercase
+    if(product.hasOwnProperty('productCode')) {
+      product.productCode = product.productCode.toUpperCase();
+    }
 
     if (!isValid) {
       toaster.pop('error', 'Please ensure all fields are valid');

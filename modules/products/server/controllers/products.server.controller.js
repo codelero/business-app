@@ -18,6 +18,11 @@ exports.create = function (req, res) {
   //product.user = req.user;
   console.log(req.body);
 
+  // make product code uppercase
+  if(product.hasOwnProperty('productCode')) {
+    product.productCode = product.productCode.toUpperCase();
+  }
+
   product.save(function (err) {
     if (err) {
       return res.status(400).send({
@@ -37,6 +42,12 @@ exports.update = function (req, res) {
   console.log(req.body);
   for (var key in req.body) {
     if (req.body.hasOwnProperty(key)) {
+
+      // make product code uppercase
+      if(key === 'productCode') {
+        req.body['productCode'] = req.body['productCode'].toUpperCase();
+      }
+
       product[key] = req.body[key];
     }
   }
