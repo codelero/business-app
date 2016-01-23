@@ -15,6 +15,23 @@ angular.module('products').controller('ProductsController', ['$scope', 'Products
 
         $scope.edit.datePicker.opened = !$scope.edit.datePicker.opened;
       }
+    },
+    priceOption: 'percent',
+    marginPercent: function () {
+      return ProductsUtilities.calculateMarginPercent($scope.product.price, $scope.product.cost);
+    },
+    calculatePrice: function () {
+      var price = 0;
+console.log($scope.edit.priceOption);
+      if ($scope.edit.priceOption === 'amount') {
+        price = ProductsUtilities.calculatePriceFromMarkupAmount($scope.product.cost,$scope.edit.markupAmount )
+      } else {
+        console.log($scope.edit.markupPercent);
+        price = ProductsUtilities.calculatePriceFromMarkupPercent($scope.product.cost, $scope.edit.markupPercent )
+
+      }
+
+      $scope.edit.product.price = price;
     }
   };
 

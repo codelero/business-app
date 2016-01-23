@@ -1,40 +1,104 @@
-<form class="form-horizontal" name="productForm">
+<form class="form-horizontal" name="productPriceForm" novalidate>
 		<fieldset>
-				<legend>Basic Product Information</legend>
-				<div class="form-group">
-						<label class="col-md-2 control-label"
-						       for="inputProductPrice">Product Price</label>
-						<div class="col-md-4">
-								<input class="form-control"
-								       id="inputProductPrice"
-								       type="number"
-								       step="any"
-								       min="0"
-								       placeholder="Product Price"
-								       ng-model="product.price" />
-						</div>
-				</div>
+				<legend>Product Price Details</legend>
 				<div class="form-group">
 						<label class="col-md-2 control-label"
 						       for="inputProductCost">Product Cost</label>
 						<div class="col-md-4">
 								<input class="form-control"
 								       id="inputProductCost"
+								       name="inputProductCost"
 								       type="number"
 								       step="any"
 								       min="0"
 								       placeholder="Product Cost"
-								       ng-model="product.cost" />
+								       ng-model="product.cost"
+								       style="text-align: right;"/>
 						</div>
+				</div>
+				<div class="form-group" style="margin-bottom:0;">
+						<label class="col-md-2 control-label">Calculate Price</label>
+						<div class="col-md-4 btn-group">
+								<label class="btn btn-default"
+								       ng-model="edit.priceOption"
+								       btn-radio="'percent'"
+								       style="width:50%">Markup %
+								</label>
+								<label class="btn btn-default"
+								       ng-model="edit.priceOption"
+								       btn-radio="'amount'"
+								       style="width:50%">Markup $
+								</label>
+						</div>
+				</div>
+				<div class="form-group"
+				     ng-if="edit.priceOption=='percent'"
+				     ng-class="{'has-error': productPriceForm.inputMarkupPercent.$invalid &&
+				     productPriceForm.inputMarkupPercent.$dirty}">
+						<div class="col-md-6 col-md-offset-2">
+								<label class="control-label"
+								       for="inputMarkupPercent">
+										Markup Percentage
+								</label>
+								<div class="form-group row"
+								     style="margin-bottom: 0">
+										<div class="col-md-4">
+												<input type="number"
+												       class="form-control"
+												       id="inputMarkupPercent"
+												       name="inputMarkupPercent"
+												       placeholder="Markup %"
+												       ng-model="edit.markupPercent"
+												       style="text-align: right;"/>
+										</div>
+										<div class="col-md-2">
+												<button class="btn btn-default"
+												        type="button"
+												        title="Calculate the price based on the code plus %"
+												        ng-click="edit.calculatePrice()">
+														Calculate
+												</button>
+										</div>
+								</div>
+						</div>
+
 				</div>
 
 
+				<div class="form-group"
+				     ng-class="{'has-error': productPriceForm.inputProductPrice.$invalid &&
+				     productPriceForm.inputProductPrice.$dirty}">
+						<label class="col-md-2 control-label"
+						       for="inputProductPrice">Product Price</label>
+						<div class="col-md-4">
+								<input class="form-control"
+								       id="inputProductPrice"
+								       name="inputProductPrice"
+								       type="number"
+								       step="any"
+								       min="0"
+								       placeholder="Product Price"
+								       ng-model="product.price"
+								       style="text-align: right;"/>
+
+						</div>
+						<span class="help-block"
+						      ng-show="productPriceForm.inputProductPrice.$invalid &&
+														productPriceForm.inputProductPrice.$dirty">
+								Product Price must be a valid number or empty
+						</span>
+				</div>
+
+				<div class="row">
+						<div class="col-md-2" style="text-align:right">Margin</div>
+						<div class="col-md-4">{{edit.marginPercent() | number: 0}}%</div>
+				</div>
 				<div class="form-group">
 						<div class="col-md-4 col-md-offset-2">
                     <span>
                         <button class="btn btn-primary"
                                 style="width:80px;margin-right:10px"
-                                ng-click="save(productForm.$valid)">
+                                ng-click="save(productPriceForm.$valid)">
 		                        Save
                         </button>
                     </span>
@@ -47,7 +111,6 @@
                     </span>
 						</div>
 				</div>
-
 		</fieldset>
 </form>
 

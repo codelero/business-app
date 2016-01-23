@@ -25,7 +25,7 @@ angular.module('products').factory('ProductsUtilities', [
       return margin;
     }
 
-    function calculatePriceFromPecent(cost, percent) {
+    function calculatePriceFromMarkupPercent(cost, percent) {
       var price = cost;
 
       if (cost && percent) {
@@ -36,7 +36,7 @@ angular.module('products').factory('ProductsUtilities', [
       return price;
     }
 
-    function calculatePriceFromAmount(cost, amount) {
+    function calculatePriceFromMarkupAmount(cost, amount) {
       var price = cost;
 
       if (cost && amount) {
@@ -52,7 +52,7 @@ angular.module('products').factory('ProductsUtilities', [
     return {
       calculateMarginPercent: calculateMarginPercent,
       calculateMarginAmount: calculateMarginAmount,
-      calculatePriceFromPecent: calculatePriceFromPecent,
-      calculatePriceFromAmount: calculatePriceFromAmount
+      calculatePriceFromMarkupPercent: calculatePriceFromMarkupPercent,
+      calculatePriceFromMarkupAmount: calculatePriceFromMarkupAmount
     };
   }]);

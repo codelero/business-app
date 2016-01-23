@@ -1,8 +1,8 @@
-<form class="form-horizontal" name="productForm">
+<form class="form-horizontal" name="productForm" novalidate>
 		<fieldset>
 				<legend>Basic Product Information</legend>
 				<div class="form-group"
-				     ng-class="{'has-error': productForm.inputProductName.$invalid && productForm.inputProductName.$dirty}">
+				     ng-class="{'has-error': productForm.inputProductName.$invalid && (productForm.inputProductName.$dirty || productForm.$submitted)}">
 						<label class="col-md-2 control-label"
 						       for="inputProductName">Product Name</label>
 						<div class="col-md-4">
@@ -12,12 +12,23 @@
 								       type="text"
 								       placeholder="Product Name"
 								       ng-model="edit.product.productName"
-								       required/>
+								       required
+								       ng-minlength="4"
+								       ng-maxlength="12"
+																/>
 						</div>
 						<span class="help-block has-error"
-						      ng-show="productForm.inputProductName.$invalid && productForm.inputProductName.$dirty">
+						      ng-show="productForm.inputProductName.$invalid && (productForm.inputProductName.$dirty || productForm.$submitted)">
 						Product Name is required
 				</span>
+						<span class="help-block has-error"
+						ng-show="productForm.inputProductName.$error.minlength && (productForm.inputProductName.$dirty || productForm.$submitted)">
+						Product name must be 4 or more characters
+						</span>
+						<span class="help-block has-error"
+						ng-show="productForm.inputProductName.$error.maxlength && (productForm.inputProductName.$dirty || productForm.$submitted)">
+						Product name must be 12 or more characters
+						</span>
 				</div>
 
 				<div class="form-group"
@@ -38,13 +49,15 @@
 				</span>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group"
+				     ng-class="{'has-error': productForm.inputAvailabilityDate.$invalid && productForm.inputAvailabilityDate.$dirty}">
 						<label class="col-md-2 control-label"
 						       for="inputAvailabilityDate">Availability</label>
 						<div class="col-md-4">
 								<div class="input-group">
 										<input class="form-control"
 										       id="inputAvailabilityDate"
+										       name="inputAvailabilityDate"
 										       type="text"
 										       placeholder="dd/mm/yyyy"
 										       datepicker-popup="dd/MM/yyyy"
