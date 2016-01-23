@@ -12,7 +12,7 @@ module.exports = {
         'public/lib/angular-resource/angular-resource.js',
         'public/lib/angular-animate/angular-animate.js',
         'public/lib/angular-ui-router/release/angular-ui-router.js',
-        'public/lib/angular-ui-utils/ui-utils.js',
+        'public/lib/angular-ui-mask/src/mask.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/AngularJS-Toaster/toaster.js',
         'public/lib/angular-file-upload/angular-file-upload.js'
