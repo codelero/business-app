@@ -17,7 +17,9 @@
 								</button>
 						</div>
 				</div>
-				{{error}}
+				<div class="has-error help-block alert-danger">
+						{{error}}
+				</div>
 				<div class="row col-md-8 col-md-offset-2">
             <span ng-repeat="tag in edit.product.tags | orderBy">
                 <button class="btn btn-default"
@@ -27,7 +29,7 @@
 		                <span class="glyphicon glyphicon-remove"></span>
                 </button>
             </span>
-				</div>
+		</div>
 				<div class="form-group">
 						<div class="col-md-4 col-md-offset-2">
                 <span>

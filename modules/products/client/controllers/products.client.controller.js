@@ -6,7 +6,9 @@ angular.module('products').controller('ProductsController', ['$scope', 'Products
   // All editing kept in one place
   // Avoids any two way binding issues
   $scope.edit = {
-    product: {},
+    product: {
+      price: ''
+    },
     newTags: '',
     datePicker: {
       open: function ($event) {
@@ -18,16 +20,16 @@ angular.module('products').controller('ProductsController', ['$scope', 'Products
     },
     priceOption: 'percent',
     marginPercent: function () {
-      return ProductsUtilities.calculateMarginPercent($scope.product.price, $scope.product.cost);
+      return ProductsUtilities.calculateMarginPercent($scope.edit.product.price, $scope.edit.product.cost);
     },
     calculatePrice: function () {
       var price = 0;
-console.log($scope.edit.priceOption);
+      console.log($scope.edit.priceOption);
       if ($scope.edit.priceOption === 'amount') {
-        price = ProductsUtilities.calculatePriceFromMarkupAmount($scope.product.cost,$scope.edit.markupAmount )
+        price = ProductsUtilities.calculatePriceFromMarkupAmount($scope.edit.product.cost, $scope.edit.markupAmount)
       } else {
         console.log($scope.edit.markupPercent);
-        price = ProductsUtilities.calculatePriceFromMarkupPercent($scope.product.cost, $scope.edit.markupPercent )
+        price = ProductsUtilities.calculatePriceFromMarkupPercent($scope.edit.product.cost, $scope.edit.markupPercent)
 
       }
 
@@ -48,6 +50,8 @@ console.log($scope.edit.priceOption);
   $scope.findOne = function () {
     if ($stateParams.productId === 'new') {
       $scope.edit.pageTitle = 'Create New Product';
+      console.log($scope.edit.product);
+
     } else {
       Products.get({
         productId: $stateParams.productId
@@ -122,6 +126,8 @@ console.log($scope.edit.priceOption);
         newProduct.$save(function (data) {
 
           toaster.pop('success', 'Save Successful');
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
         });
 
         // Update existing product
