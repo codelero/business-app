@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('products').controller('ProductsController', ['$scope', 'Products', '$stateParams', '$state', 'toaster', function ($scope, Products, $stateParams, $state, toaster) {
+angular.module('products').controller('ProductsController', ['$scope', 'Products', '$stateParams', '$state', 'toaster', 'ProductsUtilities', function ($scope, Products, $stateParams, $state, toaster, ProductsUtilities) {
 
 
   // All editing kept in one place
@@ -29,8 +29,6 @@ angular.module('products').controller('ProductsController', ['$scope', 'Products
   };
 
   $scope.findOne = function () {
-
-
     if ($stateParams.productId === 'new') {
       $scope.edit.pageTitle = 'Create New Product';
     } else {
@@ -40,6 +38,10 @@ angular.module('products').controller('ProductsController', ['$scope', 'Products
         $scope.product = data;
         $scope.edit.product = data;
         $scope.edit.pageTitle = 'Update ' + $scope.edit.product.productName;
+
+        $scope.marginPercent = ProductsUtilities.calculateMarginPercent($scope.product.price, $scope.product.cost);
+
+
         // Fixes date validation issue cause by released date data being return as a string
         // TODO investigate
         $scope.edit.product.releaseDate = $scope.edit.product.releaseDate ?
@@ -88,7 +90,7 @@ angular.module('products').controller('ProductsController', ['$scope', 'Products
     console.log('is', isValid);
 
     // make product code uppercase
-    if(product.hasOwnProperty('productCode')) {
+    if (product.hasOwnProperty('productCode')) {
       product.productCode = product.productCode.toUpperCase();
     }
 

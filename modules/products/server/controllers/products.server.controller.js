@@ -45,7 +45,7 @@ exports.update = function (req, res) {
 
       // make product code uppercase
       if(key === 'productCode') {
-        req.body['productCode'] = req.body['productCode'].toUpperCase();
+        req.body.productCode = req.body.productCode.toUpperCase();
       }
 
       product[key] = req.body[key];
