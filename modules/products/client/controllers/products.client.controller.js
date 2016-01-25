@@ -26,11 +26,10 @@ angular.module('products').controller('ProductsController', ['$scope', 'Products
       var price = 0;
       console.log($scope.edit.priceOption);
       if ($scope.edit.priceOption === 'amount') {
-        price = ProductsUtilities.calculatePriceFromMarkupAmount($scope.edit.product.cost, $scope.edit.markupAmount)
+        price = ProductsUtilities.calculatePriceFromMarkupAmount($scope.edit.product.cost, $scope.edit.markupAmount);
       } else {
         console.log($scope.edit.markupPercent);
-        price = ProductsUtilities.calculatePriceFromMarkupPercent($scope.edit.product.cost, $scope.edit.markupPercent)
-
+        price = ProductsUtilities.calculatePriceFromMarkupPercent($scope.edit.product.cost, $scope.edit.markupPercent);
       }
 
       $scope.edit.product.price = price;

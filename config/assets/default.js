@@ -13,6 +13,8 @@ module.exports = {
         'public/lib/angular-animate/angular-animate.js',
         'public/lib/angular-ui-router/release/angular-ui-router.js',
         'public/lib/angular-ui-mask/src/mask.js',
+        'public/lib/d3/d3.min.js',
+        'public/lib/angular-charts/dist/angular-charts.min.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/AngularJS-Toaster/toaster.js',
         'public/lib/angular-file-upload/angular-file-upload.js'
