@@ -3,7 +3,7 @@
 angular.module('charts').controller('ChartsController', ['$scope', 'productItems', 'ProductsUtilities', '$filter', function ($scope, productItems, ProductsUtilities, $filter) {
   var i;
 
-  $scope.title="Price Analytics";
+  $scope.title='Price Analytics';
 
   // Computed property
   for (i = 0; i < productItems.length; i++) {
@@ -14,8 +14,8 @@ angular.module('charts').controller('ChartsController', ['$scope', 'productItems
       ProductsUtilities.calculateMarginAmount(productItems[i].price,
         productItems[i].cost);
   }
-  var orderedProductsAmount = $filter("orderBy")(productItems, "marginAmount", true);
-  var filteredProductsAmount = $filter("limitTo")(orderedProductsAmount, 5);
+  var orderedProductsAmount = $filter('orderBy')(productItems, 'marginAmount', true);
+  var filteredProductsAmount = $filter('limitTo')(orderedProductsAmount, 5);
 
   // create chart data for amount
   var chartDataAmount = [];
@@ -29,12 +29,12 @@ angular.module('charts').controller('ChartsController', ['$scope', 'productItems
   }
 
   $scope.dataAmount = {
-    series: ["Cost", "Price", "Margin Amount"],
+    series: ['Cost', 'Price', 'Margin Amount'],
     data: chartDataAmount
   };
 
   $scope.configAmount = {
-    title: "Top $ Margin Products",
+    title: 'Top $ Margin Products',
     tooltips: true,
     labels: false,
     mouseover: function () { },
@@ -42,12 +42,12 @@ angular.module('charts').controller('ChartsController', ['$scope', 'productItems
     click: function () { },
     legend: {
       display: true,
-      position: "right"
+      position: 'right'
     }
   };
 
-  var orderedProductsPercent = $filter("orderBy")(productItems, "marginPercent", true);
-  var filteredProductsPercent = $filter("limitTo")(orderedProductsPercent, 5);
+  var orderedProductsPercent = $filter('orderBy')(productItems, 'marginPercent', true);
+  var filteredProductsPercent = $filter('limitTo')(orderedProductsPercent, 5);
 
   var chartDataPercent = [];
   for (i = 0; i < filteredProductsPercent.length; i++) {
@@ -58,12 +58,12 @@ angular.module('charts').controller('ChartsController', ['$scope', 'productItems
   }
 
   $scope.dataPercent = {
-    series: ["Margin %"],
+    series: ['Margin %'],
     data: chartDataPercent
   };
 
   $scope.configPercent = {
-    title: "Top % Margin Products",
+    title: 'Top % Margin Products',
     tooltips: true,
     labels: false,
     mouseover: function () { },
@@ -71,7 +71,7 @@ angular.module('charts').controller('ChartsController', ['$scope', 'productItems
     click: function () { },
     legend: {
       display: true,
-      position: "right"
+      position: 'right'
     }
   };
 
