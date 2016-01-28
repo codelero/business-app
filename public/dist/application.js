@@ -550,7 +550,10 @@ angular.module('products').config(['$stateProvider', function ($stateProvider) {
     .state('products.edit', {
       url: '/edit/:productId',
       abstract: true,
-      templateUrl: 'modules/products/views/edit-products.client.view.html'
+      templateUrl: 'modules/products/views/edit-products.client.view.html',
+      data: {
+        roles: ['user', 'admin']
+      }
     })
     .state('products.edit.info', {
       url: '/info',
@@ -567,9 +570,9 @@ angular.module('products').config(['$stateProvider', function ($stateProvider) {
 }]);
 'use strict';
 
-angular.module('products').controller('ProductsController', ['$scope', 'Products', '$stateParams', '$state', 'toaster', 'ProductsUtilities', function ($scope, Products, $stateParams, $state, toaster, ProductsUtilities) {
+angular.module('products').controller('ProductsController', ['$scope', 'Products', '$stateParams', '$state', 'toaster', 'ProductsUtilities', 'Authentication', function ($scope, Products, $stateParams, $state, toaster, ProductsUtilities, Authentication) {
 
-
+  $scope.authentication = Authentication;
   // All editing kept in one place
   // Avoids any two way binding issues
   $scope.edit = {

@@ -19,7 +19,10 @@ angular.module('products').config(['$stateProvider', function ($stateProvider) {
     .state('products.edit', {
       url: '/edit/:productId',
       abstract: true,
-      templateUrl: 'modules/products/views/edit-products.client.view.html'
+      templateUrl: 'modules/products/views/edit-products.client.view.html',
+      data: {
+        roles: ['user', 'admin']
+      }
     })
     .state('products.edit.info', {
       url: '/info',

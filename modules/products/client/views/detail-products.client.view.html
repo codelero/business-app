@@ -56,7 +56,8 @@
 						<I class="glyphicon glyphicon-chevron-left"></i>
 						Back
 				</a>
-				<a class="btn btn-primary"
+				<a data-ng-if="authentication.user"
+				   class="btn btn-primary"
 				   ui-sref="products.edit.info({productId: product._productId})"
 				   style="width:80px;margin-left:10px">
 						Edit

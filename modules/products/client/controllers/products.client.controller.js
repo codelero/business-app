@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('products').controller('ProductsController', ['$scope', 'Products', '$stateParams', '$state', 'toaster', 'ProductsUtilities', function ($scope, Products, $stateParams, $state, toaster, ProductsUtilities) {
+angular.module('products').controller('ProductsController', ['$scope', 'Products', '$stateParams', '$state', 'toaster', 'ProductsUtilities', 'Authentication', function ($scope, Products, $stateParams, $state, toaster, ProductsUtilities, Authentication) {
 
-
+  $scope.authentication = Authentication;
   // All editing kept in one place
   // Avoids any two way binding issues
   $scope.edit = {
